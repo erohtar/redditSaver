@@ -1,0 +1,6 @@
+# Ignore releases folder
+/releases/
+
+# My data/setting
+/saved.json
+/settings.json
