@@ -12,10 +12,12 @@ Sample output:
 
 
 ## Setup
-1. You go to [this url](https://ssl.reddit.com/prefs/feeds/) and copy this link:
+1. Go to [this url](https://ssl.reddit.com/prefs/feeds/) and copy this link:
 ![image](https://user-images.githubusercontent.com/5120628/200579587-48bad4e3-e569-4417-a76c-3e88f2353fa7.png)
 
-2. **Edit settings.sample.json**, put above link and your notes target path there, and **rename to settings.json**:
+2. 	**Edit settings.sample.json**,
+	put above link and your notes target path there,
+	and **rename to settings.json**
 ```
 {
 	"jsonUrl": "https://www.reddit.com/user/erohtar/saved.json?feed=xxxxxxxxx&user=erohtar",
