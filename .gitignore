@@ -2,5 +2,5 @@
 /releases/
 
 # My data/setting
-/saved.json
-/settings.json
+saved.json
+settings.json
