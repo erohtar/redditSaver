@@ -58,9 +58,11 @@ function createNotes() {
 		thisBody = thisBody.replace(/&amp;nbsp;/g,'')  //some weird chars
 		thisTitle = thisTitle.replace(':','-')  //breaks YAML frontmatter
 		
+		
+		
 		let thisNote = '---'
 			+ '\nsub: ' + thisSub
-			+ '\ntitle: ' + thisTitle
+			+ '\ntitle: ' + escChars(thisTitle)
 			+ '\ntype: ' + thisType
 			+ '\nauthor: ' + thisAuthor
 			+ '\nurl: ' + thisUrl
@@ -81,6 +83,14 @@ function createNotes() {
 		}
 		fs.appendFileSync(settings.rootPath + '\\' + thisSub + '\\' + thisNoteFile, thisNote);
 	}
+}
+
+//using certain chars in YAML breaks it for Dataview
+function escChars(value) {
+	value = value.replace('\[','\\[');
+	value = value.replace('\]','\\]');
+	value = value.replace('\:','\\:');
+	return value;
 }
 
 function newDir(dir) {
