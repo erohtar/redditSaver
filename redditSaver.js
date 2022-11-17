@@ -56,9 +56,6 @@ function createNotes() {
 		//some cleanup
 		thisBody = thisBody.replace(/&amp;#x200B;/g,'')  //some weird chars
 		thisBody = thisBody.replace(/&amp;nbsp;/g,'')  //some weird chars
-		thisTitle = thisTitle.replace(':','-')  //breaks YAML frontmatter
-		
-		
 		
 		let thisNote = '---'
 			+ '\nsub: ' + thisSub
