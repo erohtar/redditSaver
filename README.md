@@ -6,7 +6,7 @@ Sample output:
 
 
 ## Features
-- YAML Frontmatter is downloaded along with the markdown formatted note - supports using it with **Dataview** plugin
+- YAML Frontmatter is downloaded along with the markdown formatted note - supports using it with **Dataview** plugin (see below)
 - Notes are saved in `reddit\<subreddit>\<note_title>` hierarchy
 - Clickable link to the post/comment is added at the top of the note (besides being saved in Frontmatter)
 
@@ -29,6 +29,18 @@ Sample output:
 4. Done. Your notes should be created at the set path:
 `<vault>\Reddit\<subreddit>\<title>__<id>.md`
 
+## Dataview Example
+![image](https://user-images.githubusercontent.com/5120628/202477778-1867f76c-aebc-4ca9-98d7-879a4317bc38.png)
+
+Create a new note named 'redditSaver' at the root of your Obsidian vault, and put this code there to get a nice table view of all your saved posts/comments arranged with latest ones on top:
+
+````
+```dataview
+TABLE WITHOUT ID "[" + title + "](" + file.path + ")" AS "Title", type AS "Type", sub AS "Sub"
+FROM "Reddit"
+SORT file.ctime DESC
+```
+````
 
 ## Additional Notes
 - Reddit limits last 25 saved posts/comments in that feed
