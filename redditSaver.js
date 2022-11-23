@@ -86,7 +86,7 @@ function createNotes() {
 function escChars(value) {
 	value = value.replace('\[','\\[');
 	value = value.replace('\]','\\]');
-	value = value.replace('\:','\\:');
+	value = value.replace('\:','-');
 	return value;
 }
 
