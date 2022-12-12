@@ -15,11 +15,15 @@ Sample output:
 1. Go to [this url](https://ssl.reddit.com/prefs/feeds/) and copy this link:
 ![image](https://user-images.githubusercontent.com/5120628/200579587-48bad4e3-e569-4417-a76c-3e88f2353fa7.png)
 
-2. Edit **settings.sample.json**, put above link and your notes target path there, and **rename to settings.json**
+2. Copy **settings.sample.json** to **settings.json** and udpate these values:
+	- `jsonUrl` : Put above copied link
+	- `rootPath` : Your notes target path (use double forward slashes)
+	- `overWrite` : If you wish to overwrite your existing note files with latest downloads, set this to 1
 ```
 {
 	"jsonUrl": "https://www.reddit.com/user/erohtar/saved.json?feed=xxxxxxxxx&user=erohtar",
-	"rootPath": "C:\\ObsidianVault\\Reddit"
+	"rootPath": "C:\\ObsidianVault\\Reddit",
+	"overWrite": 0
 }
 ```
 

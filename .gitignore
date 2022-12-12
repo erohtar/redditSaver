@@ -1,6 +1,7 @@
 # Ignore releases folder
 /releases/
 
-# My data/setting
+# My data/settings
 saved.json
 settings.json
+*.ahk

@@ -73,12 +73,17 @@ function createNotes() {
 		//create folder for sub if it doesn't exist
 		newDir(settings.rootPath + '\\' + thisSub);
 		
-		//create note file
-		console.log('Writing : ' + settings.rootPath + '\\' + thisSub + '\\' + thisNoteFile);
-		if (fs.existsSync(settings.rootPath + '\\' + thisSub + '\\' + thisNoteFile)){
+		//if set to overwrite, delete existing file
+		if (settings.overWrite)
+		if (fs.existsSync(settings.rootPath + '\\' + thisSub + '\\' + thisNoteFile))
 			fs.unlinkSync(settings.rootPath + '\\' + thisSub + '\\' + thisNoteFile);
+		
+		//write note file
+		if (!fs.existsSync(settings.rootPath + '\\' + thisSub + '\\' + thisNoteFile))
+		{
+			console.log('Writing : ' + settings.rootPath + '\\' + thisSub + '\\' + thisNoteFile);
+			fs.appendFileSync(settings.rootPath + '\\' + thisSub + '\\' + thisNoteFile, thisNote);
 		}
-		fs.appendFileSync(settings.rootPath + '\\' + thisSub + '\\' + thisNoteFile, thisNote);
 	}
 }
 
