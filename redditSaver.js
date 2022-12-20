@@ -28,29 +28,30 @@ function createNotes() {
 	
 	//read downloaded json
 	const obj = JSON.parse(fs.readFileSync(wDir + '\\saved.json'));
-		
-	for(let child in obj.data.children) {
-		let thisSub = obj.data.children[child].data.subreddit;
-		let thisAuthor = obj.data.children[child].data.author;
-		let thisUrl = 'https://www.reddit.com' + obj.data.children[child].data.permalink;
-		let thisId = obj.data.children[child].data.id;
-		let thisTimestamp = new Date(obj.data.children[child].data.created_utc * 1000);
+	
+	//traverse through saves in the order they were saved, so that the latest notes are created at last
+	for(let i=obj.data.children.length - 1; i>=0; i--) {
+		let thisSub = obj.data.children[i].data.subreddit;
+		let thisAuthor = obj.data.children[i].data.author;
+		let thisUrl = 'https://www.reddit.com' + obj.data.children[i].data.permalink;
+		let thisId = obj.data.children[i].data.id;
+		let thisTimestamp = new Date(obj.data.children[i].data.created_utc * 1000);
 		
 		let thisType;
 		let thisTitle;
 		let thisBody;
 		
-		if(obj.data.children[child].data.title)
+		if(obj.data.children[i].data.title)
 		{
 			thisType = 'post';
-			thisTitle = obj.data.children[child].data.title;
-			thisBody = obj.data.children[child].data.selftext;
+			thisTitle = obj.data.children[i].data.title;
+			thisBody = obj.data.children[i].data.selftext;
 		}
 		else
 		{
 			thisType = 'comment';
-			thisTitle = obj.data.children[child].data.link_title;
-			thisBody = obj.data.children[child].data.body;
+			thisTitle = obj.data.children[i].data.link_title;
+			thisBody = obj.data.children[i].data.body;
 		}
 		
 		//some cleanup
@@ -68,7 +69,7 @@ function createNotes() {
 			+ '\n---\n[link](' + thisUrl + ')'
 			+ '\n' + thisBody;
 		
-		let thisNoteFile = obj.data.children[child].data.permalink.toString().match(/\/comments\/[a-z0-9]+\/([a-z0-9_]+)\//)[1] + '__' + thisId+ '.md';
+		let thisNoteFile = obj.data.children[i].data.permalink.toString().match(/\/comments\/[a-z0-9]+\/([a-z0-9_]+)\//)[1] + '__' + thisId+ '.md';
 		
 		//create folder for sub if it doesn't exist
 		newDir(settings.rootPath + '\\' + thisSub);
