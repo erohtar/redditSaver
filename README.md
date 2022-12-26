@@ -34,7 +34,7 @@ Sample output:
 `<vault>\Reddit\<subreddit>\<title>__<id>.md`
 
 ## Dataview Example
-![image](https://user-images.githubusercontent.com/5120628/202477778-1867f76c-aebc-4ca9-98d7-879a4317bc38.png)
+![image](https://user-images.githubusercontent.com/5120628/209553135-5a5d9571-0773-4e48-a571-f1b14732b770.png)
 
 Create a new note named **redditSaver** at the root of your Obsidian vault, and put this code there to get a nice table view of all your saved posts/comments in a table:
 
