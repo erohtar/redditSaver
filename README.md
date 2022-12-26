@@ -40,7 +40,7 @@ Create a new note named **redditSaver** at the root of your Obsidian vault, and 
 
 ````
 ```dataview
-TABLE WITHOUT ID "[" + title + "](" + file.path + ")" AS "Title", type AS "Type", sub AS "Sub"
+TABLE WITHOUT ID "[" + title + "](" + file.path + ")" AS "Title", type AS "Type", sub AS "r/"
 FROM "Reddit"
 SORT file.ctime DESC
 ```
@@ -50,5 +50,5 @@ SORT file.ctime DESC
 - Reddit limits last 25 saved posts/comments in that feed
 - Scheduled running of this script once daily (or so) will keep your latest saves updated automatically
 - This is NOT an Obsidian plugin, and if someone wants to create one based on this idea or my code, they're more than welcome to
-- To save reddit *crossposts*, go to the target posts and save that instead of the link post (a habit I'll have to get into myself as well)
+- To save a reddit *crosspost*, go to the target post and save that instead of the link post (a habit I'll have to get into myself as well)
 
