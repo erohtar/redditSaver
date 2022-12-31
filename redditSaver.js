@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs');  //filesystem
 const https = require('https');
+const { exit } = require('process');
 const wDir = path.dirname(__filename);  //set working dir to script dir
 
 //read app settings
@@ -29,8 +30,8 @@ function get(url, resolve, reject) {
     res.on("end", () => {
       try {
 		filePath.close();
-		console.log('saved.json : Downloaded');
 		createNotes();
+		resolve('saved.json : Downloaded');
 	} catch (err) {
         reject(err);
       }
@@ -43,7 +44,9 @@ async function getData(url) {
 }
 
 // call
-getData(settings.jsonUrl).then((r) => console.log(r));
+getData(settings.jsonUrl)
+	.then((r) => { console.log(r); exit(0)})
+	.catch((e) => { console.log(e); exit(1)});
 
 //read json and create notes
 function createNotes() {
