@@ -7,7 +7,9 @@ const wDir = path.dirname(__filename);  //set working dir to script dir
 const settings = JSON.parse(fs.readFileSync(wDir + '\\settings.json'));
 
 //delete old json if exists
-fs.unlinkSync(wDir + '\\saved.json');
+fs.rmSync(path.join(wDir, 'saved.json'), {
+    force: true,
+});
 
 //download latest json AND create notes once download finishes
 https.get(settings.jsonUrl,(res) => {
