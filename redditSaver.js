@@ -69,7 +69,7 @@ function createNotes() {
 			+ '\n---\n[link](' + thisUrl + ')'
 			+ '\n' + thisBody;
 		
-		let thisNoteFile = obj.data.children[i].data.permalink.toString().match(/\/comments\/[a-z0-9]+\/([a-z0-9_]+)\//)[1] + '__' + thisId+ '.md';
+		let thisNoteFile = obj.data.children[i].data.permalink.toString().match(/\/comments\/[a-z0-9]+\/([^/]+)\//)[1] + '__' + thisId+ '.md';
 		
 		//create folder for sub if it doesn't exist
 		newDir(settings.rootPath + '\\' + thisSub);
