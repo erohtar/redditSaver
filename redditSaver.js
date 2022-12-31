@@ -4,7 +4,7 @@ const https = require('https');
 const wDir = path.dirname(__filename);  //set working dir to script dir
 
 //read app settings
-const settings = JSON.parse(fs.readFileSync(wDir + '\\settings.json'));
+const settings = JSON.parse(fs.readFileSync(path.join(wDir, 'settings.json')));
 
 //delete old json if exists
 fs.rmSync(path.join(wDir, 'saved.json'), {
@@ -29,7 +29,7 @@ function createNotes() {
 	newDir(settings.rootPath);
 	
 	//read downloaded json
-	const obj = JSON.parse(fs.readFileSync(wDir + '\\saved.json'));
+	const obj = JSON.parse(fs.readFileSync(path.join(wDir, 'saved.json')));
 	
 	//traverse through saves in the order they were saved, so that the latest notes are created at last
 	for(let i=obj.data.children.length - 1; i>=0; i--) {
@@ -74,18 +74,18 @@ function createNotes() {
 		let thisNoteFile = obj.data.children[i].data.permalink.toString().match(/\/comments\/[a-z0-9]+\/([^/]+)\//)[1] + '__' + thisId+ '.md';
 		
 		//create folder for sub if it doesn't exist
-		newDir(settings.rootPath + '\\' + thisSub);
+		newDir(path.join(settings.rootPath, thisSub));
 		
 		//if set to overwrite, delete existing file
 		if (settings.overWrite)
-		if (fs.existsSync(settings.rootPath + '\\' + thisSub + '\\' + thisNoteFile))
-			fs.unlinkSync(settings.rootPath + '\\' + thisSub + '\\' + thisNoteFile);
+		if (fs.existsSync(path.join(settings.rootPath, thisSub, thisNoteFile)))
+			fs.unlinkSync(path.join(settings.rootPath, thisSub, thisNoteFile));
 		
 		//write note file
-		if (!fs.existsSync(settings.rootPath + '\\' + thisSub + '\\' + thisNoteFile))
+		if (!fs.existsSync(path.join(settings.rootPath, thisSub, thisNoteFile)))
 		{
-			console.log('Writing : ' + settings.rootPath + '\\' + thisSub + '\\' + thisNoteFile);
-			fs.appendFileSync(settings.rootPath + '\\' + thisSub + '\\' + thisNoteFile, thisNote);
+			console.log('Writing : ' + path.join(settings.rootPath, thisSub, thisNoteFile));
+			fs.appendFileSync(path.join(settings.rootPath, thisSub, thisNoteFile), thisNote);
 		}
 	}
 }
