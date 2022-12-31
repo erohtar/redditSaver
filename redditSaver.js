@@ -12,16 +12,38 @@ fs.rmSync(path.join(wDir, 'saved.json'), {
 });
 
 //download latest json AND create notes once download finishes
-https.get(settings.jsonUrl,(res) => {
-	const filePath = fs.createWriteStream(wDir + '\\saved.json');
-	res.pipe(filePath);
-	filePath.on('finish',() => {
+// https://stackoverflow.com/a/62588602
+function get(url, resolve, reject) {
+  https.get(url, (res) => {
+    // if any other status codes are returned, those needed to be added here
+    if(res.statusCode === 301 || res.statusCode === 302) {
+      return get(res.headers.location, resolve, reject)
+    }
+
+	const filePath = fs.createWriteStream(path.join(wDir, 'saved.json'));
+
+    res.on("data", (chunk) => {
+	  filePath.write(chunk);
+    });
+
+    res.on("end", () => {
+      try {
 		filePath.close();
 		console.log('saved.json : Downloaded');
 		createNotes();
-	})
-})
+	} catch (err) {
+        reject(err);
+      }
+    });
+  });
+}
 
+async function getData(url) {
+  return new Promise((resolve, reject) => get(url, resolve, reject));
+}
+
+// call
+getData(settings.jsonUrl).then((r) => console.log(r));
 
 //read json and create notes
 function createNotes() {
