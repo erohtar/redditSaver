@@ -59,6 +59,7 @@ function createNotes() {
 		//some cleanup
 		thisBody = thisBody.replace(/&amp;#x200B;/g,'')  //some weird chars
 		thisBody = thisBody.replace(/&amp;nbsp;/g,'')  //some weird chars
+		thisBody = thisBody.replace(/&gt;/g,'>')  //quote correctly
 		
 		let thisNote = '---'
 			+ '\nsub: ' + thisSub
