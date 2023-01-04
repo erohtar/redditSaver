@@ -29,9 +29,10 @@ function get(url, resolve, reject) {
 
     res.on("end", () => {
       try {
-		filePath.close();
-		createNotes();
-		resolve('saved.json : Downloaded');
+		filePath.end(() => {
+			createNotes();
+			resolve('saved.json : Downloaded');
+		});
 	} catch (err) {
         reject(err);
       }
