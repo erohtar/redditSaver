@@ -15,8 +15,15 @@ fs.rmSync(path.join(wDir, 'saved.json'), {
 //download latest json AND create notes once download finishes
 // https://stackoverflow.com/a/62588602
 function get(url, resolve, reject) {
-  https.get(url, (res) => {
-    // if any other status codes are returned, those needed to be added here
+  //set browser agent to chrome
+  const options = {
+    headers: {
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
+    }
+  };
+  
+  https.get(url, options, (res) => {
+	// if any other status codes are returned, those needed to be added here
     if(res.statusCode === 301 || res.statusCode === 302) {
       return get(res.headers.location, resolve, reject)
     }
