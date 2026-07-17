@@ -1,5 +1,8 @@
 {
-	"jsonUrl": "https://www.reddit.com/user/erohtar/saved.json?feed=xxxxxxxxx&user=erohtar",
+	"clientId": "xxxxxxxxxxxxxxxxxxxxxx",
+	"clientSecret": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+	"username": "erohtar",
+	"password": "your-reddit-password",
 	"rootPath": "C:\\ObsidianVault\\Reddit",
 	"overWrite": 0
 }
